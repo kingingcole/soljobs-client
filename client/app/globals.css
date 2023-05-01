@@ -1,0 +1,58 @@
+html {
+  font-family: sans-serif;
+  background-color: #222;
+  color: #bbb;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h1, h2 {
+  color: #eee
+}
+
+p,
+a,
+summary {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+p span.code {
+  font-family: monospace;
+  font-size: 80%;
+  color: #888;
+}
+
+code {
+  display: block;
+  white-space: pre-wrap;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  color: #ccc;
+  background-color: #444;
+}
+
+code span.comment {
+  color: #40ea95;
+}
+
+a:hover,
+summary:hover,
+details[open] summary {
+  color: #fff;
+}
+
+a {
+  color: #aaa;
+}
+
+summary {
+  cursor: pointer;
+}
