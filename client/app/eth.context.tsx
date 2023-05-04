@@ -1,14 +1,17 @@
 "use client";
 
 import {
+  Dispatch,
+  SetStateAction,
   createContext,
-  useContext,
-  useState,
   useCallback,
-  useEffect
+  useContext,
+  useEffect,
+  useState
 } from "react";
 import Web3 from "web3";
 import type { Contract } from "web3-eth-contract";
+import solJobsArtifact from "../contracts/SolJobs.json";
 
 export enum NotReadyReason {
   Initializing,
@@ -27,7 +30,8 @@ export interface ContextValueReady {
   ready: true;
   web3: Web3;
   account: string;
-  contracts: Record<"simpleStorage", Contract<any>>;
+  contracts: Record<"solJobs", Contract>;
+  setAccount: Dispatch<SetStateAction<string | undefined>>;
 }
 
 type ContextValue = ContextValueNotReady | ContextValueReady;
@@ -50,16 +54,11 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
   );
   const [web3, setWeb3] = useState<Web3>();
   const [account, setAccount] = useState<string>();
-  const [simpleStorage, setSimpleStorage] = useState<Contract<any>>();
+  const [solJobs, setSolJobs] = useState<Contract>();
 
   const init = useCallback(async () => {
     setReady(false);
     if (!window.ethereum) return setNotReadyReason(NotReadyReason.NoWallet);
-    const simpleStorageArtifactResponse = await fetch(
-      "/api/simple-storage-artifact"
-    );
-    if (!simpleStorageArtifactResponse.ok)
-      return setNotReadyReason(NotReadyReason.NoArtifact);
 
     const web3 = new Web3(window.ethereum);
     setWeb3(web3);
@@ -73,17 +72,16 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
     setAccount(account);
 
     const networkId = (await web3.eth.net.getId()).toString();
-    const simpleStorageArtifact = await simpleStorageArtifactResponse.json();
-    const simpleStorageAddress =
-      simpleStorageArtifact.networks[networkId]?.address;
-    if (!simpleStorageAddress)
+    const networks = solJobsArtifact.networks;
+    const solJobsAddress = networks[networkId as keyof typeof networks]?.address;
+    if (!solJobsAddress)
       return setNotReadyReason(NotReadyReason.WrongNetwork);
 
-    const simpleStorage = new web3.eth.Contract(
-      simpleStorageArtifact.abi,
-      simpleStorageAddress
-    ) as unknown as Contract<any>;
-    setSimpleStorage(simpleStorage);
+    const solJobs = new web3.eth.Contract(
+      solJobsArtifact.abi as any,
+      solJobsAddress
+    ) as unknown as Contract;
+    setSolJobs(solJobs);
 
     setReady(true);
   }, []);
@@ -101,7 +99,8 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
         ready,
         web3: web3 as Web3,
         account: account as string,
-        contracts: { simpleStorage: simpleStorage as Contract<any> }
+        contracts: { solJobs: solJobs as Contract },
+        setAccount,
       } satisfies ContextValueReady)
     : ({
         ready,
