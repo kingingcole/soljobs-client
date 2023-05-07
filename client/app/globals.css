@@ -1,12 +1,11 @@
 html {
   font-family: sans-serif;
-  background-color: #222;
   color: #bbb;
 }
 
-main {
-  display: flex;
-  justify-content: center;
+body {
+  margin: 0;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -55,4 +54,33 @@ a {
 
 summary {
   cursor: pointer;
+}
+
+main {
+  padding: 10px
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px;
+  background-color: #222;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin: 0px 10px
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { NotReadyReason, useEth } from "@/eth.context";
+import { EthProvider, NotReadyReason, useEth } from "@/eth.context";
 import styles from "./page.module.css";
 
 export default function Home(): JSX.Element {

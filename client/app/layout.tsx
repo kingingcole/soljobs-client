@@ -1,3 +1,4 @@
+import Navbar from "./components/Navbar";
 import { EthProvider } from "./eth.context";
 import "./globals.css";
 
@@ -13,11 +14,12 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html>
       <body>
-        <main>
-          <EthProvider>
+        <EthProvider>
+          <Navbar />
+          <main>
             {children}
-          </EthProvider>
-        </main>
+          </main>
+        </EthProvider>
       </body>
     </html>
   );

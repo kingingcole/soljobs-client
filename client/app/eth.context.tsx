@@ -12,6 +12,7 @@ import {
 import Web3 from "web3";
 import type { Contract } from "web3-eth-contract";
 import solJobsArtifact from "../contracts/SolJobs.json";
+import { ApplicantProfile, CreatorProfile, Profile } from "./models";
 
 export enum NotReadyReason {
   Initializing,
@@ -32,6 +33,7 @@ export interface ContextValueReady {
   account: string;
   contracts: Record<"solJobs", Contract>;
   setAccount: Dispatch<SetStateAction<string | undefined>>;
+  profile: Profile
 }
 
 type ContextValue = ContextValueNotReady | ContextValueReady;
@@ -55,6 +57,8 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
   const [web3, setWeb3] = useState<Web3>();
   const [account, setAccount] = useState<string>();
   const [solJobs, setSolJobs] = useState<Contract>();
+  
+  const [profile, setProfile] = useState<Profile>(null);
 
   const init = useCallback(async () => {
     setReady(false);
@@ -83,6 +87,15 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
     ) as unknown as Contract;
     setSolJobs(solJobs);
 
+    // fetch and set profile
+    let profile;
+    profile = await solJobs.methods.creatorProfiles(account).call() as CreatorProfile;
+    if (profile && Number(profile.id) < 1) {
+      profile = await solJobs.methods.applicantProfiles(account).call() as ApplicantProfile;
+    }
+
+    Number(profile.id) > 0 && setProfile(profile)
+
     setReady(true);
   }, []);
 
@@ -101,6 +114,7 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
         account: account as string,
         contracts: { solJobs: solJobs as Contract },
         setAccount,
+        profile
       } satisfies ContextValueReady)
     : ({
         ready,
