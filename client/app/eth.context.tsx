@@ -30,7 +30,7 @@ export interface ContextValueReady {
   ready: true;
   web3: Web3;
   account: string;
-  contracts: Record<"solJobs", Contract<any>>;
+  contracts: Record<"solJobs", Contract>;
   setAccount: Dispatch<SetStateAction<string | undefined>>;
 }
 
@@ -54,7 +54,7 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
   );
   const [web3, setWeb3] = useState<Web3>();
   const [account, setAccount] = useState<string>();
-  const [solJobs, setSolJobs] = useState<Contract<any>>();
+  const [solJobs, setSolJobs] = useState<Contract>();
 
   const init = useCallback(async () => {
     setReady(false);
@@ -78,9 +78,9 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
       return setNotReadyReason(NotReadyReason.WrongNetwork);
 
     const solJobs = new web3.eth.Contract(
-      solJobsArtifact.abi,
+      solJobsArtifact.abi as any,
       solJobsAddress
-    ) as unknown as Contract<any>;
+    ) as unknown as Contract;
     setSolJobs(solJobs);
 
     setReady(true);
@@ -99,7 +99,7 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
         ready,
         web3: web3 as Web3,
         account: account as string,
-        contracts: { solJobs: solJobs as Contract<any> },
+        contracts: { solJobs: solJobs as Contract },
         setAccount,
       } satisfies ContextValueReady)
     : ({
