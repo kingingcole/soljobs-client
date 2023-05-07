@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 
 interface CustomButtonProps {
     variant?: "text" | "outlined" | "contained";
-    color?: "inherit" | "primary" | "secondary" | "default";
+    color?: "primary" | "inherit" | "secondary" | "success" | "error" | "info" | "warning";
     children: any;
     onClick?: () => void;
 }

@@ -13,10 +13,30 @@ const Navbar = () => {
 
     useEffect(() => {
         if (eth.ready) {
-            eth.profile && setProfile(eth.profile);
-            setWalletConnected(true);
+            setProfile(eth.profile);
+            setWalletConnected(Boolean(eth.account));
         }
-    }, [eth])
+    }, [eth]);
+
+    const connectWallet = async () => {
+        // Check if Web3 is available
+        if (window.ethereum) {
+          try {
+            // Request account access
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            // Set the user's Ethereum address
+            eth.ready && eth.setAccount(accounts[0]);
+          } catch (error) {
+            console.error(error);
+          }
+        } else {
+          console.error('Web3 is not available in your browser');
+        }
+    };
+
+    const disconnectWallet = async () => {
+        eth.ready && eth.setAccount('');
+    };
 
     return (
         <nav>
@@ -31,7 +51,7 @@ const Navbar = () => {
                     )
                 }
                 <li>
-                    {walletConnected ? <CustomButton>Disconnect Wallet</CustomButton> : <CustomButton>Connect Wallet</CustomButton>}
+                    {walletConnected ? <CustomButton onClick={disconnectWallet}>Disconnect Wallet</CustomButton> : <CustomButton onClick={connectWallet}>Connect Wallet</CustomButton>}
                 </li>
             </ul>
         </nav>
