@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { EthProvider } from "./eth.context";
 import "./globals.css";
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
           <main>
             {children}
           </main>
+          <Footer />
         </EthProvider>
       </body>
     </html>
