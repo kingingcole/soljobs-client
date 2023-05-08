@@ -1,7 +1,7 @@
 "use client";
 
-import { useEth } from '@/eth.context';
-import { Profile, ProfileType } from '@/models';
+import { useEth } from 'eth.context';
+import { Profile, ProfileType } from 'models';
 import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import CustomButton from './Button';

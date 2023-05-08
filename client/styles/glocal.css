@@ -6,6 +6,9 @@ html {
 body {
   margin: 0;
   box-sizing: border-box;
+}
+
+#__next {
   min-height: 100vh; /* Set minimum height to 100% of viewport height */
   display: flex;
   flex-direction: column;
@@ -15,8 +18,9 @@ h1 {
   font-size: 2rem;
 }
 
-h1, h2 {
-  color: #eee
+h1,
+h2 {
+  color: #eee;
 }
 
 p,
@@ -61,7 +65,7 @@ summary {
 
 main {
   padding: 10px;
-  flex: 1
+  flex: 1;
 }
 
 nav {
@@ -86,7 +90,7 @@ nav ul {
 }
 
 nav ul li {
-  margin: 0px 10px
+  margin: 0px 10px;
 }
 
 footer {

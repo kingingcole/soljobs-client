@@ -12,7 +12,7 @@ import {
 } from "react";
 import Web3 from "web3";
 import type { Contract } from "web3-eth-contract";
-import solJobsArtifact from "../contracts/SolJobs.json";
+import solJobsArtifact from "./contracts/SolJobs.json";
 import { ApplicantProfile, CreatorProfile, Profile } from "./models";
 
 export enum NotReadyReason {
@@ -61,7 +61,7 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
   const [profile, setProfile] = useState<Profile>(null);
 
   const web3 = useMemo(() => {
-    if (typeof window.ethereum !== 'undefined') {
+    if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
       return new Web3(window.ethereum);
     }
     return null;
@@ -138,8 +138,8 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
     // Remove listeners when the component is unmounted
     return () => {
       if (window.ethereum) {
-        window.ethereum.off('accountsChanged', handleAccountsChanged);
-        window.ethereum.off('chainChanged', handleChainChanged);
+        window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+        window.ethereum.removeListener('chainChanged', handleChainChanged);
       }
     };
   }, []);
