@@ -1,16 +1,9 @@
 "use client";
 
-import { Button } from "@mui/material";
+import { Button, type ButtonProps } from "@mui/material";
 
-interface CustomButtonProps {
-    variant?: "text" | "outlined" | "contained";
-    color?: "primary" | "inherit" | "secondary" | "success" | "error" | "info" | "warning";
-    children: any;
-    onClick?: () => void;
-}
-
-const CustomButton = ({ variant, color, children, onClick}: CustomButtonProps) => {
-    return <Button onClick={onClick} variant={variant || 'contained'} color={color || 'primary'}>{children}</Button>
+const CustomButton = ({ variant, color, children, onClick, ...otherProps}: ButtonProps) => {
+    return <Button onClick={onClick} variant={variant || 'contained'} color={color || 'primary'} {...otherProps}>{children}</Button>
 }
 
 export default CustomButton;
