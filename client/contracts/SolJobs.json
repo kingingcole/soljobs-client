@@ -24247,12 +24247,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x6648910D212b64D9522F67E0505367b0F0de0b5c",
-      "transactionHash": "0xdf8fe038b3c30048435ec663e5b972a26100ab46c9e892d6662f4bcf335a8a8e"
+      "address": "0xB4d021e4B8cabD0b3e22D3C36033f906812Ed99E",
+      "transactionHash": "0xff3b4d910852d8971ae49d335599765060f9a1b31c7461c03b82c9d972962f5c"
     }
   },
   "schemaVersion": "3.4.9",
-  "updatedAt": "2023-05-04T09:41:28.191Z",
+  "updatedAt": "2023-06-18T21:21:10.541Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Create, apply and award remote jobs on the blockchain",
