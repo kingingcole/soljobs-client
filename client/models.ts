@@ -26,4 +26,36 @@ export interface ApplicantProfile {
     applicationIDs: number[];
 }
 
+export interface JobOffer {
+    id: number;
+    title: string;
+    description: string;
+    compensation: number;
+    creator: CreatorProfile;
+    applications: JobApplication[];
+    status: JobOfferStatus;
+    numberOfMaxHires: number;
+    numberHired: number;
+}
+
+export interface JobApplication {
+    id: number;
+    jobOfferId: number;
+    coverLetter: string;
+    applicant: ApplicantProfile;
+    status: JobApplicationStatus;
+}
+
+export enum JobApplicationStatus {
+    Pending,
+    Approved,
+    Rejected
+}
+
+export enum JobOfferStatus {
+    Open,
+    Filled,
+    Closed
+}
+
 export type Profile = CreatorProfile | ApplicantProfile | null;

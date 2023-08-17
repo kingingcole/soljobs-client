@@ -5,15 +5,33 @@ import { ContextValueReady } from "eth.context";
 import { useState } from "react";
 import CustomButton from "../../components/Button";
 import styles from './create-profile.module.css';
+import { NextRouter, useRouter } from "next/router";
 
-const CreateCreatorProfile = ({ loading }: any) => {
+interface CommonTabProps {
+    loading: boolean;
+    setLoading: (loading: boolean) => void;
+    eth: ContextValueReady;
+    router: NextRouter;
+}
+
+const CreateCreatorProfile = ({ loading, setLoading, eth, router }: CommonTabProps) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
     const [tagline, setTagline] = useState('');
 
-    const handleCreate = () => {
-        console.log('create creator profile');
+    const handleCreate = async () => {
+        setLoading(true);
+
+        try {
+            await eth.contracts.solJobs.methods.createCreatorProfile(name, email, description, tagline).send({ from: eth.account });
+            // create profile success, redirect to profile page
+            router.push('/profile/c/' + eth.account);
+        } catch (e) {
+            console.error(e);
+        }
+
+        setLoading(false);
     }
 
     const areAllFieldsFilled = () => {
@@ -31,21 +49,32 @@ const CreateCreatorProfile = ({ loading }: any) => {
     )
 }
 
-const CreateApplicantProfile = ({ loading }: any) => {
+const CreateApplicantProfile = ({ loading, setLoading, eth, router }: CommonTabProps) => {
     const [fullname, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [location, setLocation] = useState('');
     const [bio, setBio] = useState('');
 
-    const handleCreate = () => {
-        console.log('create applicant profile')
+    const handleCreate = async () => {
+        setLoading(true);
+
+        try {
+            await eth.contracts.solJobs.methods.createApplicantProfile(fullname, email, location, bio).send({ from: eth.account });
+            eth.setProfile({
+                
+            })
+            // create profile success, redirect to profile page
+            router.push('/profile/a/' + eth.account);
+        } catch (e) {
+            console.error(e);
+        }
+
+        setLoading(false);
     }
 
     const areAllFieldsFilled = () => {
-        return fullname && email && location && bio && true;
+        return fullname && email && location && bio;
     }
-
-    console.log(areAllFieldsFilled())
 
     return (
         <Box>
@@ -62,6 +91,8 @@ const CreateProfile = ({ eth }: { eth: ContextValueReady }) => {
     const [type, setType] = useState(0);
     const [loading, setLoading] = useState(false);
 
+    const router = useRouter();
+
     if (!eth.account) {
         // no account
         return (
@@ -76,6 +107,13 @@ const CreateProfile = ({ eth }: { eth: ContextValueReady }) => {
         )
     }
 
+    const commonTabProps: CommonTabProps = {
+        loading,
+        setLoading,
+        eth,
+        router
+    }
+
     return (
         <Box className={styles.container}>
             <Tabs value={type} onChange={(e, val) => setType(val)} centered>
@@ -83,7 +121,7 @@ const CreateProfile = ({ eth }: { eth: ContextValueReady }) => {
                 <Tab label="Applicant" />
             </Tabs>
             {
-                type == 0 ? <CreateCreatorProfile loading={loading} /> : <CreateApplicantProfile loading={loading} />
+                type == 0 ? <CreateCreatorProfile {...commonTabProps} /> : <CreateApplicantProfile {...commonTabProps} />
             }
         </Box>
     )

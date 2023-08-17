@@ -34,7 +34,8 @@ export interface ContextValueReady {
   account: string;
   contracts: Record<"solJobs", Contract>;
   setAccount: Dispatch<SetStateAction<string | undefined>>;
-  profile: Profile
+  profile: Profile;
+  setProfile: Dispatch<SetStateAction<Profile>>;
 }
 
 type ContextValue = ContextValueNotReady | ContextValueReady;
@@ -151,7 +152,8 @@ export function EthProvider({ children }: EthProviderProps): JSX.Element {
         account: account as string,
         contracts: { solJobs: solJobs as Contract },
         setAccount,
-        profile
+        profile,
+        setProfile,
       } satisfies ContextValueReady)
     : ({
         ready,

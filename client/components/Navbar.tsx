@@ -38,6 +38,13 @@ const Navbar = () => {
         eth.ready && eth.setAccount('');
     };
 
+    const getUserProfileLink = () => {
+        if (!eth.ready) return '';
+
+        let profileType = profile?.profileType == ProfileType.Creator ? 'c' : 'a';
+        return `/profile/${profileType}/${eth.account}`
+    }
+
     return (
         <nav>
             <Link href='/'>SolJobs</Link>
@@ -46,6 +53,7 @@ const Navbar = () => {
                     walletConnected && (
                         <Fragment>
                             {profile && profile.profileType == ProfileType.Creator && <li><Link href={'/create-job'}>Create Job</Link></li>}
+                            {profile && <li><Link href={getUserProfileLink()}>View Profile</Link></li>}
                             {!profile && <li><Link href={'/create-profile'}>Create Profile</Link></li>}
                         </Fragment>
                     )

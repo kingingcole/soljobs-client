@@ -1,0 +1,15 @@
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    color: gray;
+}
+
+.pageTitle {
+    color: black
+}
+
+.error {
+    color: rgb(189, 11, 11);
+    font-size: 14px;
+    margin: 0
+}

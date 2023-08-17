@@ -25,11 +25,11 @@ contract SolJobs {
     mapping (address => bool) private creatorAddresses;
     mapping (address => bool) private applicantAddresses;
 
-    uint public numberOfJobsCreated;
-    mapping (uint => JobOffer) public jobOffers;
+    JobOffer[] private jobOffers;
+    JobApplication[] private jobApplications;
 
-    uint public numberOfApplications;
-    mapping (uint => JobApplication) public jobApplications;
+    mapping (address => JobOffer[]) private profileToJobsMapping;
+    mapping (address => JobApplication[]) private profileToApplicationsMapping;
 
     constructor() {
         manager = msg.sender;
@@ -118,9 +118,9 @@ contract SolJobs {
         uint compensation,
         uint numberOfMaxHires
     ) external callerHasCreatorProfile(tx.origin) {
-        uint jobID = ++numberOfJobsCreated;
+        uint jobID = jobOffers.length + 1;
 
-        JobOffer storage jobOffer = jobOffers[jobID];
+        JobOffer storage jobOffer = jobOffers.push();
         jobOffer.id = jobID;
         jobOffer.title = title;
         jobOffer.description = description;
@@ -133,6 +133,8 @@ contract SolJobs {
         jobOffer.status = JobOfferStatus.Open;
         jobOffer.numberHired = 0;
 
+        profileToJobsMapping[tx.origin].push(jobOffer);
+
         emit JobCreated(jobID);
     }
 
@@ -140,12 +142,14 @@ contract SolJobs {
         uint jobID,
         string calldata coverLetter
     ) external callerHasApplicantProfile(tx.origin) {
-        uint applicationID = ++numberOfApplications;
+        require(jobID > 0 && jobID <= jobOffers.length, "Invalid job ID");
 
-        JobOffer storage jobOffer = jobOffers[jobID];
+        uint applicationID = jobApplications.length + 1;
+
+        JobOffer storage jobOffer = jobOffers[jobID - 1];
         require(jobOffer.status == JobOfferStatus.Open, jobIsNoLongerOpen);
 
-        JobApplication storage jobApplication = jobApplications[applicationID];
+        JobApplication storage jobApplication = jobApplications.push();
         jobApplication.id = applicationID;
         jobApplication.jobOfferId = jobID;
         jobApplication.coverLetter = coverLetter;
@@ -155,13 +159,15 @@ contract SolJobs {
         jobApplication.status = JobApplicationStatus.Pending;
         jobOffer.applications.push(jobApplication);
 
+        profileToApplicationsMapping[tx.origin].push(jobApplication);
+
         emit ApplicationSubmitted(applicationID);
     }
 
     function approveApplication(uint applicationID) external callerHasCreatorProfile(tx.origin) {
         // fetch application and the parent job
-        JobApplication storage jobApplication = jobApplications[applicationID];
-        JobOffer storage jobOffer = jobOffers[jobApplication.jobOfferId];
+        JobApplication storage jobApplication = jobApplications[applicationID - 1];
+        JobOffer storage jobOffer = jobOffers[jobApplication.jobOfferId - 1];
 
         require(jobOffer.numberHired < jobOffer.numberOfMaxHires, jobMaxedOutHires);
         require(jobOffer.status == JobOfferStatus.Open, jobIsNoLongerOpen);
@@ -178,10 +184,31 @@ contract SolJobs {
     }
 
     function rejectApplication(uint applicationID) external callerHasCreatorProfile(tx.origin) {
-        JobApplication storage jobApplication = jobApplications[applicationID];
+        JobApplication storage jobApplication = jobApplications[applicationID - 1];
 
         // reject the application
         jobApplication.status = JobApplicationStatus.Rejected;
+    }
+
+    function getCreatedJobsForProfile(address profile) public view returns(JobOffer[] memory) {
+        return profileToJobsMapping[profile];
+    }
+
+    function getApplicationsForProfile(address profile) public view returns(JobApplication[] memory) {
+        return profileToApplicationsMapping[profile];
+    }
+
+    function getAllJobsCreated() public view returns(JobOffer[] memory) {
+        return jobOffers;
+    }
+
+    function getJob(uint id) public view returns(JobOffer memory) {
+        require(id > 0 && id <= jobOffers.length, "Invalid job ID");
+        return jobOffers[id - 1];
+    }
+
+    function test() public pure returns(string memory) {
+        return "hello";
     }
 
     // getter methods
@@ -194,11 +221,11 @@ contract SolJobs {
         return numberOfApplicantProfiles;
     }
 
-    function getNumberOfJobsCreated() public view returns(uint) {
-        return numberOfJobsCreated;
+    function getnumberOfJobsCreated() public view returns(uint) {
+        return jobOffers.length;
     }
 
     function getNumberOfApplications() public view returns(uint) {
-        return numberOfApplications;
+        return jobApplications.length;
     }
 }

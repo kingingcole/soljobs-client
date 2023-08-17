@@ -13,7 +13,6 @@ struct CreatorProfile {
     address creatorAddress;
     bool verified;
     ProfileType profileType;
-    uint[] jobOfferIDs;
 }
 
 struct ApplicantProfile {
@@ -24,7 +23,6 @@ struct ApplicantProfile {
     string location;
     string bio;
     ProfileType profileType;
-    uint[] applicationIDs;
 }
 
 struct JobOffer {
