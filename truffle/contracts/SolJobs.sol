@@ -25,7 +25,7 @@ contract SolJobs {
     mapping (address => bool) private creatorAddresses;
     mapping (address => bool) private applicantAddresses;
 
-    JobOffer[] private jobOffers;
+    JobOffer[] public jobOffers;
     JobApplication[] private jobApplications;
 
     mapping (address => JobOffer[]) private profileToJobsMapping;
@@ -110,6 +110,15 @@ contract SolJobs {
         profile.applicantAddress = tx.origin;
 
         emit ApplicantProfileCreated(applicantID);
+    }
+
+    function editCreatorProfile(address _address, string calldata _name, string calldata _description, string calldata _tagline) external {
+        require(creatorAddresses[_address], "Profile does not exist");
+
+        CreatorProfile storage profileToEdit = creatorProfiles[_address];
+        profileToEdit.name = _name;
+        profileToEdit.description = _description;
+        profileToEdit.tagline = _tagline;
     }
 
     function createJobOffer(
@@ -200,32 +209,5 @@ contract SolJobs {
 
     function getAllJobsCreated() public view returns(JobOffer[] memory) {
         return jobOffers;
-    }
-
-    function getJob(uint id) public view returns(JobOffer memory) {
-        require(id > 0 && id <= jobOffers.length, "Invalid job ID");
-        return jobOffers[id - 1];
-    }
-
-    function test() public pure returns(string memory) {
-        return "hello";
-    }
-
-    // getter methods
-
-    function getNumberOfCreatorProfiles() public view returns(uint) {
-        return numberOfCreatorProfiles;
-    }
-
-    function getNumberOfApplicantProfiles() public view returns(uint) {
-        return numberOfApplicantProfiles;
-    }
-
-    function getnumberOfJobsCreated() public view returns(uint) {
-        return jobOffers.length;
-    }
-
-    function getNumberOfApplications() public view returns(uint) {
-        return jobApplications.length;
     }
 }

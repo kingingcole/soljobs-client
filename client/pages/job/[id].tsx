@@ -42,7 +42,7 @@ export default function Job({ eth }: { eth: ContextValueReady }) {
                 <Stack direction={'row'} justifyContent={'space-between'} alignItems={'flex-start'}>
                     <Box>
                         <h1 className={styles.title}>{job?.title}</h1>
-                        <p><Link href={`profile/c/${job?.creator.creatorAddress}`}>{job?.creator.name}</Link></p>
+                        <p><Link href={`/profile/c/${job?.creator.creatorAddress}`}>{job?.creator.name}</Link></p>
                         <Box>
                             <p className={styles.sectionTitle}>Compensation</p>
                             <p>{eth.web3.utils.fromWei(job?.compensation.toString(), 'ether')} ETH</p>
