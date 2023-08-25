@@ -1,4 +1,5 @@
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
+import ApplyButton from "components/ApplyButton";
 import { ContextValueReady } from "eth.context";
 import { JobOffer } from "models";
 import Link from "next/link";
@@ -19,7 +20,8 @@ export default function Job({ eth }: { eth: ContextValueReady }) {
             setLoading(true);
 
             const fetchedJob: JobOffer = await eth.contracts.solJobs.methods.jobOffers(id - 1).call();
-            console.log({ fetchedJob })
+            const applications = await eth.contracts.solJobs.methods.getApplicationsForJob(id).call();
+            console.log({ fetchedJob, applications })
             setJob(fetchedJob);
 
             setLoading(false);
@@ -53,7 +55,7 @@ export default function Job({ eth }: { eth: ContextValueReady }) {
                         </Box>
                     </Box>
                     <Box>
-                        <Button variant="contained" size='small'>Apply</Button>
+                        <ApplyButton job={job} eth={eth} />
                     </Box>
                 </Stack>
             )}

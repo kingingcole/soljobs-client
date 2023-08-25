@@ -210,4 +210,8 @@ contract SolJobs {
     function getAllJobsCreated() public view returns(JobOffer[] memory) {
         return jobOffers;
     }
+
+    function getApplicationsForJob(uint jobId) public view returns(JobApplication[] memory) {
+        return jobOffers[jobId - 1].applications;
+    }
 }
