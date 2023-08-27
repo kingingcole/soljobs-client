@@ -26,7 +26,7 @@ contract SolJobs {
     mapping (address => bool) private applicantAddresses;
 
     JobOffer[] public jobOffers;
-    JobApplication[] private jobApplications;
+    JobApplication[] public jobApplications;
 
     mapping (address => JobOffer[]) private profileToJobsMapping;
     mapping (address => JobApplication[]) private profileToApplicationsMapping;
