@@ -1,8 +1,9 @@
 import { Box, Stack } from '@mui/material';
-import { JobApplicationStatus, type JobApplication } from 'models';
+import { JobApplicationStatus, type JobApplication as IJobApplication } from 'models';
+import Link from 'next/link';
 import { useState } from 'react';
 
-const JobApplication = ({ application }: { application: JobApplication }) => {
+const JobApplication = ({ application }: { application: IJobApplication }) => {
     const [showMore, setShowMore] = useState(false);
 
     const getApplicationStatus = () => {
@@ -15,7 +16,7 @@ const JobApplication = ({ application }: { application: JobApplication }) => {
     return (
         <Box sx={{mb: 3}}>
             <Stack direction={'row'} alignItems={'center'} spacing={1}>
-                <h3 style={{margin: 0}}>Application #{application.id}</h3> <i>{getApplicationStatus()}</i>
+                <h3 style={{margin: 0}}><Link href={`/application/${application.id}`}>Application #{application.id}</Link></h3> <i>{getApplicationStatus()}</i>
             </Stack>
             <p style={{margin: '10px 0'}}>{coverLetter}</p>
             {application.coverLetter.length > 100 && (
