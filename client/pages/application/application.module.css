@@ -1,0 +1,16 @@
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    color: gray
+}
+
+.title {
+    color: black;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.sectionTitle {
+    color: black;
+    margin-bottom: 0px;
+}
