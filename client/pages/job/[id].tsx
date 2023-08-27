@@ -1,7 +1,8 @@
 import { Box, Stack } from "@mui/material";
 import ApplyButton from "components/ApplyButton";
+import Application from "components/JobApplication";
 import { ContextValueReady } from "eth.context";
-import { JobOffer } from "models";
+import { JobApplication, JobOffer } from "models";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -11,6 +12,7 @@ export default function Job({ eth }: { eth: ContextValueReady }) {
     const { query: { id } }: any = useRouter();
 
     const [job, setJob] = useState<JobOffer | null>(null);
+    const [applications, setApplications] = useState<JobApplication[]>([])
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -20,9 +22,10 @@ export default function Job({ eth }: { eth: ContextValueReady }) {
             setLoading(true);
 
             const fetchedJob: JobOffer = await eth.contracts.solJobs.methods.jobOffers(id - 1).call();
-            const applications = await eth.contracts.solJobs.methods.getApplicationsForJob(id).call();
-            console.log({ fetchedJob, applications })
+            const applications: JobApplication[] = await eth.contracts.solJobs.methods.getApplicationsForJob(id).call();
+
             setJob(fetchedJob);
+            setApplications(applications);
 
             setLoading(false);
         }
@@ -41,7 +44,8 @@ export default function Job({ eth }: { eth: ContextValueReady }) {
     return (
         <Box className={styles.container}>
             {job && (
-                <Stack direction={'row'} justifyContent={'space-between'} alignItems={'flex-start'}>
+                <Box>
+                    <Stack direction={'row'} justifyContent={'space-between'} alignItems={'flex-start'}>
                     <Box>
                         <h1 className={styles.title}>{job?.title}</h1>
                         <p><Link href={`/profile/c/${job?.creator.creatorAddress}`}>{job?.creator.name}</Link></p>
@@ -58,6 +62,17 @@ export default function Job({ eth }: { eth: ContextValueReady }) {
                         <ApplyButton job={job} eth={eth} />
                     </Box>
                 </Stack>
+                {
+                    job.creator.creatorAddress == eth.account && (
+                        <Box>
+                            <p className={styles.sectionTitle}>Application(s) Submitted</p>
+                            {applications.map(application => {
+                                return <Application key={application.id} application={application} />
+                            })}
+                        </Box>
+                    )
+                }
+                </Box>
             )}
         </Box>
     )

@@ -13,6 +13,7 @@ export default function Application({ eth }: { eth: ContextValueReady }) {
     const [application, setApplication] = useState<JobApplication | null>(null);
     const [job, setJob] = useState<JobOffer | null>(null);
     const [loading, setLoading] = useState(false);
+    const [actionLoading, setActionLoading] = useState(false);
 
     useEffect(() => {
         if (!eth.ready || !id) return;
@@ -51,6 +52,23 @@ export default function Application({ eth }: { eth: ContextValueReady }) {
 
     const renderActionButtons = application?.status == JobApplicationStatus.Pending && job?.creator.creatorAddress === eth.account;
 
+    const handleApplicationAction = async (action: 'approve' | 'reject') => {
+        if (!application || !eth) return;
+
+        try {
+            setActionLoading(true);
+
+            await eth.contracts.solJobs.methods[action + 'Application'](application.id).send({ from: eth.account });
+            // reload page to fetch new status of job and application
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+        }
+        finally {
+            setActionLoading(false);
+        }
+    }
+
     return (
         <Box className={styles.container}>
             {application && (
@@ -64,8 +82,8 @@ export default function Application({ eth }: { eth: ContextValueReady }) {
                     {
                         renderActionButtons && (
                             <Stack mt={2} direction={'row'} alignItems={'flex-start'} spacing={1}>
-                                <CustomButton size='small'>Approve</CustomButton>
-                                <CustomButton size='small' color="error">Reject</CustomButton>
+                                <CustomButton disabled={actionLoading} onClick={() => handleApplicationAction('approve')} size='small'>Approve</CustomButton>
+                                <CustomButton disabled={actionLoading} onClick={() => handleApplicationAction('reject')} size='small' color="error">Reject</CustomButton>
                             </Stack>
                         )
                     }
