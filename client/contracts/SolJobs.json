@@ -105,8 +105,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -160,8 +159,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -237,8 +235,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -334,8 +331,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -663,8 +659,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -747,8 +742,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -914,8 +908,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -998,8 +991,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newApplicantID\",\"type\":\"uint256\"}],\"name\":\"ApplicantProfileCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"applicationID\",\"type\":\"uint256\"}],\"name\":\"ApplicationSubmitted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCreatorID\",\"type\":\"uint256\"}],\"name\":\"CreatorProfileCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newJobID\",\"type\":\"uint256\"}],\"name\":\"JobCreated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"applicantProfiles\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"applicantAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"fullname\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"bio\",\"type\":\"string\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"jobID\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"coverLetter\",\"type\":\"string\"}],\"name\":\"applyForJob\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"applicationID\",\"type\":\"uint256\"}],\"name\":\"approveApplication\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_fullname\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_location\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_bio\",\"type\":\"string\"}],\"name\":\"createApplicantProfile\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_tagline\",\"type\":\"string\"}],\"name\":\"createCreatorProfile\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"compensation\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"numberOfMaxHires\",\"type\":\"uint256\"}],\"name\":\"createJobOffer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"creatorProfiles\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"tagline\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"creatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"verified\",\"type\":\"bool\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_tagline\",\"type\":\"string\"}],\"name\":\"editCreatorProfile\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllJobsCreated\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"compensation\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"tagline\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"creatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"verified\",\"type\":\"bool\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"internalType\":\"struct CreatorProfile\",\"name\":\"creator\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"jobOfferId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"coverLetter\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"applicantAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"fullname\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"bio\",\"type\":\"string\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"internalType\":\"struct ApplicantProfile\",\"name\":\"applicant\",\"type\":\"tuple\"},{\"internalType\":\"enum JobApplicationStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"internalType\":\"struct JobApplication[]\",\"name\":\"applications\",\"type\":\"tuple[]\"},{\"internalType\":\"enum JobOfferStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"numberOfMaxHires\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"numberHired\",\"type\":\"uint256\"}],\"internalType\":\"struct JobOffer[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"}],\"name\":\"getApplicationsForJob\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"jobOfferId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"coverLetter\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"applicantAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"fullname\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"bio\",\"type\":\"string\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"internalType\":\"struct ApplicantProfile\",\"name\":\"applicant\",\"type\":\"tuple\"},{\"internalType\":\"enum JobApplicationStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"internalType\":\"struct JobApplication[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"profile\",\"type\":\"address\"}],\"name\":\"getApplicationsForProfile\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"jobOfferId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"coverLetter\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"applicantAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"fullname\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"bio\",\"type\":\"string\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"internalType\":\"struct ApplicantProfile\",\"name\":\"applicant\",\"type\":\"tuple\"},{\"internalType\":\"enum JobApplicationStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"internalType\":\"struct JobApplication[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"profile\",\"type\":\"address\"}],\"name\":\"getCreatedJobsForProfile\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"compensation\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"tagline\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"creatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"verified\",\"type\":\"bool\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"internalType\":\"struct CreatorProfile\",\"name\":\"creator\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"jobOfferId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"coverLetter\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"applicantAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"fullname\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"bio\",\"type\":\"string\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"internalType\":\"struct ApplicantProfile\",\"name\":\"applicant\",\"type\":\"tuple\"},{\"internalType\":\"enum JobApplicationStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"internalType\":\"struct JobApplication[]\",\"name\":\"applications\",\"type\":\"tuple[]\"},{\"internalType\":\"enum JobOfferStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"numberOfMaxHires\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"numberHired\",\"type\":\"uint256\"}],\"internalType\":\"struct JobOffer[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"jobApplications\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"jobOfferId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"coverLetter\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"applicantAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"fullname\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"location\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"bio\",\"type\":\"string\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"internalType\":\"struct ApplicantProfile\",\"name\":\"applicant\",\"type\":\"tuple\"},{\"internalType\":\"enum JobApplicationStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"jobOffers\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"compensation\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"tagline\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"creatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"verified\",\"type\":\"bool\"},{\"internalType\":\"enum ProfileType\",\"name\":\"profileType\",\"type\":\"uint8\"}],\"internalType\":\"struct CreatorProfile\",\"name\":\"creator\",\"type\":\"tuple\"},{\"internalType\":\"enum JobOfferStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"numberOfMaxHires\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"numberHired\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"applicationID\",\"type\":\"uint256\"}],\"name\":\"rejectApplication\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Create, apply and award remote jobs on the blockchain\",\"kind\":\"dev\",\"methods\":{},\"title\":\"SolJobs\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/SolJobs.sol\":\"SolJobs\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/SolJobs.sol\":{\"keccak256\":\"0x7e3fbc8820d072d36e15077b46c85a7e64965a76409950051321eab622833618\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://c27855e3f58ee28d018f2c9de38e2d033a83ae8238e6383a8d4e27d57e4ca735\",\"dweb:/ipfs/QmWJhkmVMZEEsRNGGkhej67eCzdhwuMnw5x8jP1jpcJ7As\"]},\"project:/contracts/constants.sol\":{\"keccak256\":\"0x21c4f54c2617a19dbaa0437c3f0c96e694c12507d83143f90fefe66b0a938610\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://d20fa11db44f41f0b4521ad91d4f5a9c6227d26aeaa6cbd550070e75ac1dee0d\",\"dweb:/ipfs/QmZA9cSU2HENP1aqovuoD4UooQK5AWrEjSVoKs6dDRvh6c\"]},\"project:/contracts/enums.sol\":{\"keccak256\":\"0x4e4f9d7067f156cd63ddd44bb5146e6f9d473425cc32757fa046bcff5a066f58\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://9a76a292e3166f02856bb789c3e79ae1dad5ee91b39f05cd80851bf37bac02d8\",\"dweb:/ipfs/QmPA8NZc4Mzkvd6Vgo7YGrCVeRb7PvEKZytMEAnLHaqUKZ\"]},\"project:/contracts/structs.sol\":{\"keccak256\":\"0xc66e718cc5291a0c902a5b8665bc8aa570d79c92f9fed99b4e339afb5e9e7c4a\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://54dafd0d99cdcca7bf0602b1b14f5b3006c88cfe6742c809ee2a19d0b5390d92\",\"dweb:/ipfs/QmXfiyL9NK3JUDejFRjhnu4onN7DTr9XC8hwJNgiYHhTBt\"]}},\"version\":1}",
@@ -27450,6 +27442,12 @@
     "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
   },
   "networks": {
+    "5": {
+      "events": {},
+      "links": {},
+      "address": "0x844768EEe7B3019E0675Aad201830fA9B7Ff2b1f",
+      "transactionHash": "0xe7f5b545bd499396ab7231ab98f7f45d1459ab045ad668e5ecf42431121806e8"
+    },
     "5777": {
       "events": {},
       "links": {},
@@ -27458,8 +27456,7 @@
     }
   },
   "schemaVersion": "3.4.9",
-  "updatedAt": "2023-08-27T10:45:38.296Z",
-  "networkType": "ethereum",
+  "updatedAt": "2023-08-27T13:46:31.229Z",
   "devdoc": {
     "details": "Create, apply and award remote jobs on the blockchain",
     "kind": "dev",
